@@ -1,0 +1,46 @@
+saque = 0
+deposito = 0
+saldo = 0
+numerodesaques = 0
+opcao = 0
+valorsacado = 0
+extrato = ""
+
+while opcao == 0:
+    opcao = int(input("Selecione a opção : \n 1 - Deposito \n 2 - Saque \n 3 - Extrato \n 4 - Encerrar \n "))
+
+    if opcao == 1:
+        deposito = float(input("Digite o valor de deposito: "))
+        saldo += deposito
+        extrato += f" deposito de {deposito:.2f}\n "
+        print(f"Saldo de {saldo:.2f}")
+        opcao = 0
+    elif opcao == 2:
+        if numerodesaques < 3 and valorsacado < 500: 
+            saque = float(input("Digite o valor de saque: "))
+            if saque <= saldo and saque < 500:
+                print(f"Saque realizado com sucesso, saldo atualizado: {saldo - saque:.2f}")
+                saldo -= saque
+                numerodesaques += 1
+                valorsacado += saque
+                extrato += f"Saque de {saque:.2f}\n"
+                print(f"Saldo de {saldo:.2f}")
+                opcao = 0
+            elif saque > 500:
+                print("Valor maior que o limite de saque de R$ 500,00")
+            else:
+                print("Saldo insuficiente")
+                print(f"Saldo atual : {saldo:.2f}")
+                opcao = 0
+        else:
+            print("limite de saque ultrapassado.")
+    elif opcao == 3:
+        print(extrato)
+        print(f"saldo atual: {saldo:.2f}\n")
+        opcao = 0
+    elif opcao == 4:
+        print("Obrigado por utilizar nossos serviços")
+        break
+    elif opcao != 1 or opcao !=2 or opcao != 3 or opcao != 0 :
+        print("Digite uma opção valida")
+        opcao = 0
